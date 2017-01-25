@@ -6,6 +6,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
+var todo_service_1 = require("./services/todo.service");
 var AppComponent = (function () {
     function AppComponent() {
     }
@@ -13,8 +14,10 @@ var AppComponent = (function () {
 }());
 AppComponent = __decorate([
     core_1.Component({
+        moduleId: module.id,
         selector: 'todo-app',
-        template: "<h1>Angular app</h1>"
+        templateUrl: 'app.component.html',
+        providers: [todo_service_1.TodoService]
     })
 ], AppComponent);
 exports.AppComponent = AppComponent;

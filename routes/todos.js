@@ -28,7 +28,7 @@ router.post('/todo', (req, res) => {
         res.status(400);
         res.send('Invalid data');
     } else {
-        db.todo.save(todo, (err, todo) => {
+        db.todos.save(todo, (err, todo) => {
             if(err){
                 console.error(err);
             } else {
@@ -39,14 +39,40 @@ router.post('/todo', (req, res) => {
 });
 
 router.put('/todo/:id', (req, res) => {
-    ds.todos.update({_id: mongojs.ObjectId(req.params.id)}, 
-        {$set: {title: req.title, isReady: req.isReady}}, (err, todo) =>{
+    db.todos.update({_id: mongojs.ObjectId(req.params.id)}, 
+        {$set: {title: req.title, isReady: req.isReady}}, (err, todo) => {
         if(err){
             console.error(err);
         } else {
             res.send('Todo updated');
         }
     });
+
+    // let todo = req.body;
+    // let updTodo = {};
+    
+    // if(todo.isDone){
+    //     updTodo.isDone = todo.isDone;
+    // }
+    
+    // if(todo.title){
+    //     updTodo.title = todo.title;
+    // }
+    
+    // if(!updTodo){
+    //     res.status(400);
+    //     res.json({
+    //         "error":"Bad Data"
+    //     });
+    // } else {
+    //     db.todos.update({_id: mongojs.ObjectId(req.params.id)},updTodo, {}, (err, todo) => {
+    //         if(err){
+    //             res.send(err);
+    //         }
+    //         res.json(todo);
+    //     });
+    // }
+
 });
 
 router.delete('/todo/:id', (req, res) => {

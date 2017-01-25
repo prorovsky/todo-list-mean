@@ -1,0 +1,19 @@
+<form class="well" (submit)="addTodo($event)">
+    <div class="form-group">
+        <input type="text" [(ngModel)]="title" name="title" class="form-control" placeholder="добавить задание">
+    </div>
+</form>
+
+<div class="task-list">
+    <div *ngFor="let todo of todos">
+        <div class="col-md-1">
+            <input type="checkbox" [checked]="todo.isReady" (click)="updateStatus(todo)">
+        </div>
+        <div class="col-md-7">
+            {{todo.title}}
+        </div>
+        <div class="col-md-4">
+            <input type="button" (click)="deleteTodo(todo._id)" value="Удалить" class="btn btn-danger">
+        </div>
+    </div>
+</div>
